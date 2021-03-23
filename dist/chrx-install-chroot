@@ -92,21 +92,10 @@ install_steam()
 
 install_minecraft()
 {
-  apt_get_install default-jre
-  curl -o /usr/local/bin/Minecraft.jar \
-    https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar
-  curl -o /usr/share/pixmaps/minecraft.png https://chrx.org/minecraft.png
-  mkdir -p /usr/local/share/applications
-  cat > /usr/local/share/applications/minecraft.desktop <<-EOF
-	[Desktop Entry]
-	Type=Application
-	Name=Minecraft
-	Comment=Minecraft
-	Exec=java -jar /usr/local/bin/Minecraft.jar
-	Icon=/usr/share/pixmaps/minecraft.png
-	Categories=Game;
-	EOF
-}
+  curl -O https://launcher.mojang.com/download/Minecraft.deb
+  dpkg -i Minecraft.deb
+  apt-get -f -y install
+  rm -f Minecraft.deb}
 
 install_kodi()
 {
